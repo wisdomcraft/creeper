@@ -1,0 +1,40 @@
+{
+	"manifest_version": 2,
+	"version": "1.3",
+	"name": "creeper",
+	"description": "creeper-1.3, 爬山虎专利采集, chrome浏览器插件",
+	"browser_action": {
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"options_page": "options.html",
+	"icons": {
+		"128": "icon.png",
+		"16": "icon.png",
+		"48": "icon.png"
+	},
+    "content_scripts": [
+        {
+            "js": [
+                "js/content.js", 
+                "js/content_cnipa_cpquery.js", 
+                "js/content_cnipa_cpquery_auto.js", 
+                "js/content_cnipa_epub.js", 
+                "js/content_cnipa_epub_pam.js", 
+                "js/content_patentstar.js"
+            ],
+            "matches": ["http://cpquery.cnipa.gov.cn/*", "http://epub.cnipa.gov.cn/*", "http://www.patentstar.cn/*"],
+            "run_at": "document_end"
+        }
+    ],
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": true
+    },
+    "permissions": [
+        "tabs", 
+        "http://*/*",
+        "https://*/*",
+        "background"
+    ]
+}
